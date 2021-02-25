@@ -1,9 +1,14 @@
+// SPDX-License-Identifier: MIT
 pragma solidity =0.5.16;
 
 import './interfaces/IPancakeERC20.sol';
 import './libraries/SafeMath.sol';
 
 contract PancakeERC20 is IPancakeERC20 {
+
+    event Approval(address indexed owner, address indexed spender, uint value);
+    event Transfer(address indexed from, address indexed to, uint value);
+
     using SafeMath for uint;
 
     string public constant name = 'Pancake LPs';
@@ -18,9 +23,7 @@ contract PancakeERC20 is IPancakeERC20 {
     bytes32 public constant PERMIT_TYPEHASH = 0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9;
     mapping(address => uint) public nonces;
 
-    event Approval(address indexed owner, address indexed spender, uint value);
-    event Transfer(address indexed from, address indexed to, uint value);
-
+    
     constructor() public {
         uint chainId;
         assembly {

@@ -1,10 +1,11 @@
-pragma solidity ^0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity =0.5.16;
 
 contract BasicEns {
     mapping (bytes32 => address) _records;
     address _owner;
 
-    constructor(address owner) {
+    constructor(address owner) public {
         _owner = owner;
     }
 

@@ -1,9 +1,12 @@
+// SPDX-License-Identifier: MIT
 pragma solidity =0.5.16;
 
 import './interfaces/IPancakeFactory.sol';
 import './PancakePair.sol';
 
 contract PancakeFactory is IPancakeFactory {
+    event PairCreated(address indexed token0, address indexed token1, address pair, uint);
+
     bytes32 public constant INIT_CODE_PAIR_HASH = keccak256(abi.encodePacked(type(PancakePair).creationCode));
 
     address public feeTo;
@@ -12,8 +15,7 @@ contract PancakeFactory is IPancakeFactory {
     mapping(address => mapping(address => address)) public getPair;
     address[] public allPairs;
 
-    event PairCreated(address indexed token0, address indexed token1, address pair, uint);
-
+   
     constructor(address _feeToSetter) public {
         feeToSetter = _feeToSetter;
     }
